@@ -40,7 +40,7 @@ class UserDAO {
     require_once($path1."/Request/utilities/connection.php");
     //prepare and bind
     $stmt = $conn->prepare(
-    "INSERT INTO cs3620.user
+    "INSERT INTO gamerater.user
     (
     username1,
     password1,
@@ -69,7 +69,7 @@ class UserDAO {
   function deleteUser($un){
     $path1 = (isset($_SESSION["SQLUSER"]) ? $_SERVER['DOCUMENT_ROOT']."/GameRater" : $_SERVER['DOCUMENT_ROOT']);
     require_once($path1."/Request/utilities/connection.php");
-    $sql = "DELETE FROM cs3620_proj.user WHERE username = '" . $un . "';";
+    $sql = "DELETE FROM gamerater.user WHERE username = '" . $un . "';";
 
     if ($conn->query($sql) === TRUE) {
       echo "user deleted";

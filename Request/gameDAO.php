@@ -56,7 +56,7 @@ class GameDAO {
     require_once($path1.'/Request/utilities/connection.php');
     //prepare and bind
     $stmt = $conn->prepare(
-    "INSERT INTO cs3620.games
+    "INSERT INTO gamerater.games
     (
     gameName,
     gameDescription,
@@ -85,7 +85,7 @@ class GameDAO {
     $path1 = (isset($_SESSION["SQLUSER"]) ? $_SERVER['DOCUMENT_ROOT']."/GameRater" : $_SERVER['DOCUMENT_ROOT']);
     require_once($path1.'/Request/utilities/connection.php');
     
-    $sql = "DELETE FROM cs3620.games WHERE gameId = " . $gd . " AND gameUser = ".$ud.";";
+    $sql = "DELETE FROM gamerater.games WHERE gameId = " . $gd . " AND gameUser = ".$ud.";";
   
     if ($conn->query($sql) === TRUE) {
       $conn->close();
