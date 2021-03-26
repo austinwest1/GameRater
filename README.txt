@@ -34,11 +34,6 @@ tables in cs3620=>
 To let common Pathing work must name file Game Rater and that file must be in the htdocs folder,
 use this folder as the git repo
 
-To link up with the Repo probably:
- git init
- git branch -M main
- git remote add origin https://github.com/GiancarloGutierrez/GameRater.git
- git push -u origin main
  
 
 Side Note:
