@@ -31,7 +31,7 @@ tables in cs3620=>
 
 
 
-To let common Pathing work must name file Game Rater and that file must be in the htdocs folder,
+To let common Pathing work must name file GameRater and that file must be in the htdocs folder,
 use this folder as the git repo
 
  
