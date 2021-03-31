@@ -1,11 +1,7 @@
 <?php
-$_SESSION["SQLPW"] = "cs3620Pass!";
-$_SESSION["SQLUSER"] = "cs3620group1@cs3620group-project-db";
-
-
 $servername = "cs3620group-project-db.mysql.database.azure.com";
-$username = (isset($_SESSION["SQLUSER"]) ? $_SESSION["SQLUSER"] :$_ENV['SQLUSER']);
-$password = (isset($_SESSION["SQLPW"]) ? $_SESSION["SQLPW"]:$_ENV['SQLPW']);
+$username = (isset($_SESSION["SQLUSER"]) ? $_SESSION["SQLUSER"] : $_ENV['SQLUSER']);
+$password = (isset($_SESSION["SQLPW"]) ? $_SESSION["SQLPW"] : $_ENV['SQLPW']);
 $dbname = "gamerater";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
