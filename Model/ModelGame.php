@@ -1,10 +1,6 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
-
-
-// require_once($path . '/Request/gameDAO.php');
-$path = $_SERVER['DOCUMENT_ROOT'];
-require_once($path . '/GameRater/Request/gameDAO.php');
+require_once($path . '/Request/gameDAO.php');
 
 
 class Game implements \JsonSerializable
@@ -16,6 +12,7 @@ class Game implements \JsonSerializable
   private $gameDescription;
   private $gameRating;
   private $pictureLink;
+  private $gameUpVotes;
 
   // Methods
   function __construct()
@@ -61,7 +58,25 @@ class Game implements \JsonSerializable
   {
     $this->gameRating = $gameRatingPassed;
   }
+  function setGamePicture($pictureLink)
+  {
+    $this->pictureLink = $pictureLink;
+  }
 
+  function getGamePicture()
+  {
+    return $this->pictureLink;
+  }
+
+  function setGameUpVotes($upVotes)
+  {
+    $this->gameUpVotes = $upVotes;
+  }
+
+  function getGameUpVotes()
+  {
+    return $this->gameUpVotes;
+  }
   function getAllGames()
   {
     $gameDAO = new GameDAO();
@@ -81,22 +96,84 @@ class Game implements \JsonSerializable
     $gameDAO->createGame($this);
   }
 
+  function updateGame()
+  {
+    $gameDAO = new GameDAO();
+    $gameDAO->updateGame($this);
+  }
+
   function deleteGame($gameID, $username2)
   {
     $gameDAO = new GameDAO();
     $result = $gameDAO->deleteGame($gameID, $username2);
     return $result;
   }
-
-  function setGamePicture($pictureLink)
+  
+  /************************************************************************Sorted Functionality Begin */
+  /*
+  * The sorted functions both take in a choice for the column to be sorted on, and a upDown direction for 
+  * Ascending order or Descending Order. ['MyGamesSorted' version takes a userId as well]
+  * For Choice:  (1,gameName)  (2,gameDescription) (3,gameRating) (4,gameUser) (5,GameUpVotes)
+  * For upDown:  (0, Descending) (1,Ascending)
+  */
+  function getAllGamesSorted($choice,$upDown)
   {
-    $this->pictureLink = $pictureLink;
+    $chosen = "gameId";
+    $direction = "DESC";
+    switch($choice){
+      case 1:
+        $chosen = "gameName";
+        break;
+      case 2:
+        $chosen = "gameDescription";
+        break;
+      case 3:
+        $chosen = "gameRating";
+        break;
+      case 4:
+        $chosen = "gameUser";
+        break;
+      case 5:
+        $chosen = "gameUpVotes";
+        break;
+    }
+    if($upDown){
+      $direction = " ";
+    }
+    $gameDAO = new GameDAO();
+    $games = $gameDAO->getGamesSorted($chosen,$direction);
+    return $games;
   }
 
-  function getGamePicture()
+  function getMyGamesSorted($user_logged,$choice,$upDown)
   {
-    return $this->pictureLink;
+    $chosen = "gameId";
+    $direction = "DESC";
+    switch($choice){
+      case 1:
+        $chosen = "gameName";
+        break;
+      case 2:
+        $chosen = "gameDescription";
+        break;
+      case 3:
+        $chosen = "gameRating";
+        break;
+      case 4:
+        $chosen = "gameUser";
+        break;
+      case 5:
+        $chosen = "gameUpVotes";
+        break;
+    }
+    if($upDown){
+      $direction = " ";
+    }
+    $gameDAO = new GameDAO();
+    $games = $gameDAO->getMyGamesSorted($user_logged,$chosen,$direction);
+    return $games;
   }
+  //***********************************************************************************Sorted Functionality End */
 
   public function jsonSerialize()
   {

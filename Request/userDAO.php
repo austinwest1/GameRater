@@ -1,7 +1,7 @@
 <?php
 class UserDAO {
   function getUser($user){
-    $path1 = (isset($_SESSION["SQLUSER"]) ? $_SERVER['DOCUMENT_ROOT']."/GameRater" : $_SERVER['DOCUMENT_ROOT']);
+    $path1 = $_SERVER['DOCUMENT_ROOT'];
     require_once($path1."/Request/utilities/connection.php");
     $sql = "SELECT first_name, last_name, username1, user_id FROM user WHERE user_id =" . $user->getUserId();
     $result = $conn->query($sql);
@@ -20,7 +20,7 @@ class UserDAO {
   }
 
   function checkLogin($passedinusername, $passedinpassword){
-    $path1 = (isset($_SESSION["SQLUSER"]) ? $_SERVER['DOCUMENT_ROOT']."/GameRater" : $_SERVER['DOCUMENT_ROOT']);
+    $path1 = $_SERVER['DOCUMENT_ROOT'];
     require_once($path1."/Request/utilities/connection.php");
     $user_id = 0;
     $sql = "SELECT user_id FROM user WHERE username1 = '" . $passedinusername . "' AND password1 = '" . hash("sha256", trim($passedinpassword)) . "'";
@@ -36,7 +36,7 @@ class UserDAO {
   }
 
   function createUser($user){
-    $path1 = (isset($_SESSION["SQLUSER"]) ? $_SERVER['DOCUMENT_ROOT']."/GameRater" : $_SERVER['DOCUMENT_ROOT']);
+    $path1 = $_SERVER['DOCUMENT_ROOT'];
     require_once($path1."/Request/utilities/connection.php");
     //prepare and bind
     $stmt = $conn->prepare(
@@ -67,7 +67,7 @@ class UserDAO {
   }
 
   function deleteUser($un){
-    $path1 = (isset($_SESSION["SQLUSER"]) ? $_SERVER['DOCUMENT_ROOT']."/GameRater" : $_SERVER['DOCUMENT_ROOT']);
+    $path1 = $_SERVER['DOCUMENT_ROOT'];
     require_once($path1."/Request/utilities/connection.php");
     $sql = "DELETE FROM gamerater.user WHERE username = '" . $un . "';";
 
