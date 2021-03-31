@@ -6,14 +6,6 @@
 include_once('../View/Common/header.php');
 include_once('../Control/ControlSessionCheck.php');
 
-// // $path1 = (isset($_SESSION["SQLUSER"]) ? $_SERVER['DOCUMENT_ROOT'] . "/GameRater" : $_SERVER['DOCUMENT_ROOT']);
-// $path = $_SERVER['DOCUMENT_ROOT'];
-// require_once($path . '/GameRater/Model/ModelGame.php');
-
-
-// //require_once('./Model/ModelGame.php');
-//include('/opt/lampp/htdocs/GameRater/Model/ModelGame.php');
-
 include_once('../Model/ModelGame.php');
 
 $game = new Game();
