@@ -8,6 +8,8 @@ Notes:
 Common Pathing switched to allowe the root to be htdocs rather than gameRater for
 the local development=> may need to reposition files to make work again on local instance
 
+Site index is under homepage/index.php
+
 tables in cs3620=>
       games=>
          gameId            int(11)
