@@ -14,7 +14,7 @@ class UserDAO {
         $user->setUsername($row["username"]);
     }
     } else {
-        echo "0 results";
+        //echo "0 results";
     }
     $conn->close();
   }
@@ -80,4 +80,3 @@ class UserDAO {
     $conn->close();
   }
 }
-?>
