@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 $path = $_SERVER['DOCUMENT_ROOT'];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
