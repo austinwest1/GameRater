@@ -1,22 +1,12 @@
 <?php
 
 ?>
-<div class ="row">
-    <footer>
-        <section class ="col-m-6">
-        <hr>
-        <h5>
-            Created By Austin Duran, Austin West, and Giancarlo Gutierrez
-        </h5>    
-            <hr>
-        </section>
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+</footer>
 
-        <section class ="col-m-6">
-            <hr>
-            <h5>
-            Azure Services, PHP
-            </h5>    
-            <hr>
-        </section>
-    </footer>
-</div>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

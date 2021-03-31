@@ -1,0 +1,71 @@
+/*!
+ * Start Bootstrap - Shop Item (https://startbootstrap.com/template/shop-item)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-item/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+
+button {
+  margin-top: 15px;
+  width: 255px;
+  height: 50px;
+}
+
+#formCard {
+  width: 800px;
+  margin: auto;
+}
+
+input[type="text"] {
+  margin-top: 10px;
+  /* text-transform: uppercase; */
+  /* font-size: 100%; */
+}
+
+.form-control {
+  width: 300px;
+}
+
+form#newGame {
+display: block;
+}
+
+textarea#descBox {
+  float: right;
+  margin-top: 30px;
+  width: 400px;
+  height: 186px;
+  margin-right: 20px;
+}
+
+button#formSubmit {
+  /* margin: auto; */
+  margin-left: 250px;
+  /* width: 190px; */
+  /* margin-right: auto; */
+}
+
+button#cancelSubmit {
+  width: 115px;
+  float: right;
+  margin-right: 18px;
+}
+
+div.card-body {
+  padding-top: 5px;
+}
+
+h3.card-title {
+  margin-top: 12px;
+}
+
+a#deleteCard {
+  float: right;
+  margin-right: 18px;
+}
+
+a#deleteCard:hover {
+  text-decoration: none;
+}

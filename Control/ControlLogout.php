@@ -6,5 +6,4 @@ require_once($path.'/Model/ModelSession.php');
 $session = new session();
 $login_result = $session->logout();
 header("Location: ../login.php");
-end();
-?>
+exit();

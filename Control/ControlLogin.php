@@ -16,7 +16,6 @@
         exit();
     }
     else{
-        header("Location: ../dashboard.php");
+        header("Location: ../homepage/index.php");
         exit();
     }
-?>  
