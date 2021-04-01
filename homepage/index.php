@@ -40,7 +40,7 @@ $arrLength = count($games);
             <div class="col-lg-9">
 
                 <div id="sortMethod">
-                    <label id="sortLabel">Sort Method</label>
+                    <label id="sortLabel">Sort Method - still working on these</label>
                     <button class="btn btn-info" id="sortButton">Rating</button>
                     <button class="btn btn-info" id="sortButton">Upvotes</button>
 
