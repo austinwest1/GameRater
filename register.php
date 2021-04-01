@@ -62,11 +62,10 @@ error_reporting(E_ALL);
 
             <!-- Login Form -->
             <form action="Control/ControlUserInsert.php" method="POST">
-                <input type="text" id="login" class="fadeIn second" name="username" placeholder="Email">
-                <input type="text" id="login" class="fadeIn second" name="firstName" placeholder="First Name">
-                <input type="text" id="login" class="fadeIn second" name="lastName" placeholder="Last Name">
-
-                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                <input type="text" id="login" class="fadeIn second" name="username" placeholder="Email" required>
+                <input type="text" id="login" class="fadeIn second" name="firstName" placeholder="First Name" required>
+                <input type="text" id="login" class="fadeIn second" name="lastName" placeholder="Last Name" required>
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required>
                 <input type="submit" class="fadeIn fourth" value="Sign Up">
             </form>
 
