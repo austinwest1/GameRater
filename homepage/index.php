@@ -19,35 +19,72 @@ $arrLength = count($games);
 
         <div class="row">
 
-            <div class="col-lg-3">
+            <div class="col-lg-3" id="sideBar">
                 <h1 class="my-4">Rate Method</h1>
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
+                    <?php
+                    // changes navbox active color depending on which page is currently selected
+                    if (isset($_GET["0"])) {
+                        echo '<a href="index.php?0" class="list-group-item active">Add New Reviews</a>
+                    <a href="index.php?1" class="list-group-item">View All Reviews</a>';
+                    } else if (isset($_GET["1"])) {
+                        echo '<a href="index.php?0" class="list-group-item">Add New Reviews</a>
+                    <a href="index.php?1" class="list-group-item active">View All Reviews</a>';
+                    }
+                    ?>
                 </div>
-                <button type="button" id="addCard" class="btn btn-outline-dark">New Review</button>
 
             </div>
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
 
+                <div id="sortMethod">
+                    <label id="sortLabel">Sort Method</label>
+                    <button class="btn btn-info" id="sortButton">Rating</button>
+                    <button class="btn btn-info" id="sortButton">Upvotes</button>
+
+                </div>
+
                 <div id="newCard"></div>
 
 
                 <?php
-                for ($x = $arrLength - 1; $x >= 0; $x--) {
-                    echo '<div class="card mt-4">
-                            <img class="card-img-top img-fluid" src="' . $games[$x]->getGamePicture() . '" alt="">
-                            <div class="card-body">
-                                <h3 class="card-title">' . $games[$x]->getGameName() . '</h3>
-                                <h4>' . $games[$x]->getGameRating() . '</h4>
-                                <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
-                                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                                Will make the stars work later
-                                <a href="../Control/ControlGameDelete.php?gameId= ' . $games[$x]->getGameID() . '" id="deleteCard">Delete Game</a>
-                            </div>
-                        </div>';
+                // inserts games for indiviual user
+                if (isset($_GET["0"])) {
+                    for ($x = $arrLength - 1; $x >= 0; $x--) {
+                        echo '<div class="card mt-4">
+                                <img class="card-img-top img-fluid" src="' . $games[$x]->getGamePicture() . '" alt="">
+                                <div class="card-body">
+                                    <h3 class="card-title">' . $games[$x]->getGameName() . '</h3>
+                                    <h4>' . $games[$x]->getGameRating() . '</h4>
+                                    <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
+                                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                                    Will make the stars work later
+                                    <a href="../Control/ControlGameDelete.php?gameId= ' . $games[$x]->getGameID() . '" id="deleteCard">Delete Game</a>
+                                </div>
+                            </div>';
+                    }
+                }
+                // inserts complete list of games
+                else if (isset($_GET["1"])) {
+                    $game2 = new Game();
+                    $games2 = $game2->getAllGames();
+
+                    $arrLength = count($games2);
+
+                    for ($x = $arrLength - 1; $x >= 0; $x--) {
+                        echo '<div class="card mt-4">
+                                <img class="card-img-top img-fluid" src="' . $games2[$x]->getGamePicture() . '" alt="">
+                                <div class="card-body">
+                                    <h3 class="card-title">' . $games2[$x]->getGameName() . '</h3>
+                                    <h4>' . $games2[$x]->getGameRating() . '</h4>
+                                    <p class="card-text">' . $games2[$x]->getGameDescription() . '</p>
+                                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                                    Will make the stars work later
+                                </div>
+                            </div>';
+                    }
                 }
                 ?>
 
@@ -63,17 +100,27 @@ $arrLength = count($games);
 
     </form>
 
-    <script>
-        var cardButton = document.getElementById("addCard");
-        cardButton.onclick = function() {
-            document.getElementById("newCard").innerHTML = '<div class="card mt-4"><img class="card-img-top img-fluid" src="https://alphasys.com.au/wp-content/themes/corporate-theme/images/placeholder.png" alt=""><div class="card-body"><form id="newGame" action="../Control/ControlGameInsert.php" method="POST"><textarea class="form-control" name="description" placeholder="Description" id="descBox"></textarea><br /><input type="text" class="form-control" name="title" placeholder="Title"><br /><input type="text" class="form-control" name="rating" placeholder="Rating"><br /><input type="text" class="form-control" name="picture" placeholder="Image Link"><button type="submit" class="btn btn-outline-primary" id="formSubmit">Submit</button><button type="button" class="btn btn-secondary" id="cancelSubmit">Cancel</button></form></div></div>';
 
-            var cancelButton = document.getElementById("cancelSubmit");
-            cancelButton.onclick = function() {
-                document.getElementById("newCard").innerHTML = "";
+    <?php
+    //when on the individual user page, adds the ability to add a new game review
+    if (isset($_GET["0"])) :
+    ?>
+        <script>
+            document.getElementById("sideBar").innerHTML += '<button type="button" id="addCard" class="btn btn-outline-dark">New Review</button>'
+
+            var cardButton = document.getElementById("addCard");
+            cardButton.onclick = function() {
+                document.getElementById("newCard").innerHTML = '<div class="card mt-4"><img class="card-img-top img-fluid" src="https://alphasys.com.au/wp-content/themes/corporate-theme/images/placeholder.png" alt=""><div class="card-body"><form id="newGame" action="../Control/ControlGameInsert.php" method="POST"><textarea class="form-control" name="description" placeholder="Description" id="descBox"></textarea><br /><input type="text" class="form-control" name="title" placeholder="Title"><br /><input type="text" class="form-control" name="rating" placeholder="Rating"><br /><input type="text" class="form-control" name="picture" placeholder="Image Link"><button type="submit" class="btn btn-outline-primary" id="formSubmit">Submit</button><button type="button" class="btn btn-secondary" id="cancelSubmit">Cancel</button></form></div></div>';
+
+                var cancelButton = document.getElementById("cancelSubmit");
+                cancelButton.onclick = function() {
+                    document.getElementById("newCard").innerHTML = "";
+                }
             }
-        }
-    </script>
+        </script>
+    <?php
+    endif;
+    ?>
     <!-- /.container -->
 
     <div class="push"></div>
@@ -109,5 +156,23 @@ $arrLength = count($games);
     .py-5 bg-dark {
         grid-row-start: 2;
         grid-row-end: 3;
+    }
+
+    div {
+        /* outline-style: solid;
+        outline-color: red; */
+    }
+
+    #sortButton {
+        width: 120px;
+    }
+
+    div#sortMethod {
+        /* position: absolute; */
+    }
+
+    button#sortButton,
+    label#sortLabel {
+        /* float: right; */
     }
 </style>
