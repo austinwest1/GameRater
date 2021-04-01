@@ -26,12 +26,19 @@ $arrLength = count($games);
                     // changes navbox active color depending on which page is currently selected
                     if (isset($_GET["0"])) {
                         echo '<a href="index.php?0" class="list-group-item active">Add New Reviews</a>
-                    <a href="index.php?1" class="list-group-item">View All Reviews</a>';
+                              <a href="index.php?1" class="list-group-item">View All Reviews</a>
+                              <a href="index.php?2" class="list-group-item">Vote On Games</a>';
                     } else if (isset($_GET["1"])) {
                         echo '<a href="index.php?0" class="list-group-item">Add New Reviews</a>
-                    <a href="index.php?1" class="list-group-item active">View All Reviews</a>';
+                              <a href="index.php?1" class="list-group-item active">View All Reviews</a>
+                              <a href="index.php?2" class="list-group-item">Vote On Games</a>';
+                    } else if (isset($_GET["2"])) {
+                        echo '<a href="index.php?0" class="list-group-item">Add New Reviews</a>
+                              <a href="index.php?1" class="list-group-item">View All Reviews</a>
+                              <a href="index.php?2" class="list-group-item active">Vote On Games</a>';
                     }
                     ?>
+
                 </div>
 
             </div>
@@ -40,14 +47,12 @@ $arrLength = count($games);
             <div class="col-lg-9">
 
                 <div id="sortMethod">
-                    <label id="sortLabel">Sort Method - still working on these</label>
+                    <label id="sortLabel">Sort Method - still working on these, ignore the ugliness</label>
                     <button class="btn btn-info" id="sortButton">Rating</button>
                     <button class="btn btn-info" id="sortButton">Upvotes</button>
-
                 </div>
 
                 <div id="newCard"></div>
-
 
                 <?php
                 // inserts games for indiviual user
@@ -56,6 +61,8 @@ $arrLength = count($games);
                         echo '<div class="card mt-4">
                                 <img class="card-img-top img-fluid" src="' . $games[$x]->getGamePicture() . '" alt="">
                                 <div class="card-body">
+                                    <h5 id="upvotes">' . $games[$x]->getGameUpVotes() . '</h5>
+                                    <img id="upvoteImg" src="upvote3.png" alt="">
                                     <h3 class="card-title">' . $games[$x]->getGameName() . '</h3>
                                     <h4>' . $games[$x]->getGameRating() . '</h4>
                                     <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
@@ -77,8 +84,10 @@ $arrLength = count($games);
                         echo '<div class="card mt-4">
                                 <img class="card-img-top img-fluid" src="' . $games2[$x]->getGamePicture() . '" alt="">
                                 <div class="card-body">
+                                    <h5 id="upvotes">' . $games2[$x]->getGameUpVotes() . '</h5>
+                                    <img id="upvoteImg" src="upvote3.png" alt="">
                                     <h3 class="card-title">' . $games2[$x]->getGameName() . '</h3>
-                                    <h4>' . $games2[$x]->getGameRating() . '</h4>
+                                    <h4>My Rating: ' . $games2[$x]->getGameRating() . '</h4>
                                     <p class="card-text">' . $games2[$x]->getGameDescription() . '</p>
                                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                                     Will make the stars work later
@@ -90,16 +99,8 @@ $arrLength = count($games);
 
             </div>
             <!-- /.col-lg-9 -->
-
         </div>
-
     </div>
-
-
-    <form method="POST" action="">
-
-    </form>
-
 
     <?php
     //when on the individual user page, adds the ability to add a new game review
@@ -174,5 +175,19 @@ $arrLength = count($games);
     button#sortButton,
     label#sortLabel {
         /* float: right; */
+    }
+
+    #upvotes {
+        float: right;
+        margin-top: 15px;
+        margin-right: 3px;
+    }
+
+    #upvoteImg {
+        height: 22px;
+        width: auto;
+        float: right;
+        margin-top: 15px;
+        margin-right: 8px;
     }
 </style>
