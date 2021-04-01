@@ -67,7 +67,7 @@ $arrLength = count($games);
                                     <h4>' . $games[$x]->getGameRating() . '</h4>
                                     <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
                                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                                    Will make the stars work later
+                                    Will make the stars work later, maybe
                                     <a href="../Control/ControlGameDelete.php?gameId= ' . $games[$x]->getGameID() . '" id="deleteCard">Delete Game</a>
                                 </div>
                             </div>';
@@ -87,10 +87,10 @@ $arrLength = count($games);
                                     <h5 id="upvotes">' . $games2[$x]->getGameUpVotes() . '</h5>
                                     <img id="upvoteImg" src="upvote3.png" alt="">
                                     <h3 class="card-title">' . $games2[$x]->getGameName() . '</h3>
-                                    <h4>My Rating: ' . $games2[$x]->getGameRating() . '</h4>
+                                    <h5>User Rating: ' . $games2[$x]->getGameRating() . '</h5>
                                     <p class="card-text">' . $games2[$x]->getGameDescription() . '</p>
                                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                                    Will make the stars work later
+                                    Will make the stars work later, maybe
                                 </div>
                             </div>';
                     }
@@ -137,8 +137,6 @@ $arrLength = count($games);
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 
 </html>
