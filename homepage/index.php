@@ -56,6 +56,20 @@ $arrLength = count($games);
 
                 <div id="newCard"></div>
 
+
+                <!-- comparison containers -->
+                <!-- <div class="float-container">
+
+                    <div class="float-child">
+                        <div class="green">Float Column 1</div>
+                    </div>
+
+                    <div class="float-child">
+                        <div class="blue">Float Column 2</div>
+                    </div>
+
+                </div> -->
+
                 <?php
                 // inserts games for indiviual user
                 if (isset($_GET["0"])) {
@@ -97,6 +111,54 @@ $arrLength = count($games);
                             </div>';
                     }
                 }
+                if (isset($_GET["2"])) :
+                    $game2 = new Game();
+                    $allGames = $game2->getAllGames();
+
+                    $arrLength = count($allGames);
+
+                    $r = rand(0, $arrLength - 1);
+                    $r2 = rand(0, $arrLength - 1);
+
+                    echo '<div class="float-container">
+                            <div class="float-child">
+                                <div class="green" id="comp1">
+                                    <div class="card mt-4">
+                                        <img class="card-img-top img-fluid" src="' . $allGames[$r]->getGamePicture() . '" alt="">
+                                            <div class="card-body">
+                                                <h5 id="upvotes">' . $allGames[$r]->getGameUpVotes() . '</h5>
+                                                <img id="upvoteImg" src="upvote3.png" alt="">
+                                                <h3 class="card-title">' . $allGames[$r]->getGameName() . '</h3>
+                                                <p class="card-text">' . $allGames[$r]->getGameDescription() . '</p>
+                                                <button type="button" class="btn btn-outline-dark" id="voteBtn">Vote</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="float-child">
+                                <div class="blue" id="comp2">
+                                    <div class="card mt-4">
+                                        <img class="card-img-top img-fluid" src="' . $allGames[$r2]->getGamePicture() . '" alt="">
+                                            <div class="card-body">
+                                                <h5 id="upvotes">' . $allGames[$r2]->getGameUpVotes() . '</h5>
+                                                <img id="upvoteImg" src="upvote3.png" alt="">
+                                                <h3 class="card-title">' . $allGames[$r2]->getGameName() . '</h3>
+                                                <p class="card-text">' . $allGames[$r2]->getGameDescription() . '</p>
+                                                <button type="button" class="btn btn-outline-dark" id="voteBtn">Vote</button>
+
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>';
+
+                ?>
+                    <script>
+                        document.getElementById("sortMethod").innerHTML = '<h3 id="sortLabel">Which game is better?</h3>';
+                    </script>
+
+                <?php
+                endif;
                 ?>
 
             </div>
@@ -105,6 +167,7 @@ $arrLength = count($games);
     </div>
 
     <?php
+
     //when on the individual user page, adds the ability to add a new game review
     if (isset($_GET["0"])) :
     ?>
@@ -202,5 +265,26 @@ $arrLength = count($games);
         float: right;
         margin-top: 15px;
         margin-right: 8px;
+    }
+
+    .float-container {
+        /* border: 3px solid #fff; */
+        padding: 20px;
+    }
+
+    .float-child {
+        width: 50%;
+        float: left;
+        padding: 20px;
+        /* border: 2px solid red; */
+    }
+
+    #sortLabel {
+        margin-top: 30px;
+        margin-left: 280px;
+    }
+
+    #voteBtn {
+        margin-left: 30px;
     }
 </style>
