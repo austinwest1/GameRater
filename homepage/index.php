@@ -64,7 +64,7 @@ $arrLength = count($games);
                                     <h5 id="upvotes">' . $games[$x]->getGameUpVotes() . '</h5>
                                     <img id="upvoteImg" src="upvote3.png" alt="">
                                     <h3 class="card-title">' . $games[$x]->getGameName() . '</h3>
-                                    <h4>' . $games[$x]->getGameRating() . '</h4>
+                                    <h5>My Rating: ' . $games[$x]->getGameRating() . '/10</h5>
                                     <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
                                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                                     Will make the stars work later, maybe
@@ -87,7 +87,7 @@ $arrLength = count($games);
                                     <h5 id="upvotes">' . $games2[$x]->getGameUpVotes() . '</h5>
                                     <img id="upvoteImg" src="upvote3.png" alt="">
                                     <h3 class="card-title">' . $games2[$x]->getGameName() . '</h3>
-                                    <h5>User Rating: ' . $games2[$x]->getGameRating() . '</h5>
+                                    <h5>User Rating: ' . $games2[$x]->getGameRating() . '/10</h5>
                                     <p class="card-text">' . $games2[$x]->getGameDescription() . '</p>
                                     <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                                     Will make the stars work later, maybe
