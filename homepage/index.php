@@ -38,7 +38,9 @@ $arrLength = count($games);
                               <a href="index.php?2" class="list-group-item active">Vote On Games</a>';
                     }
                     ?>
-
+                    <div id="newBtn">
+                        <button type="button" id="addCard" class="btn btn-outline-dark disabled">New Review</button>
+                    </div>
                 </div>
 
             </div>
@@ -107,7 +109,8 @@ $arrLength = count($games);
     if (isset($_GET["0"])) :
     ?>
         <script>
-            document.getElementById("sideBar").innerHTML += '<button type="button" id="addCard" class="btn btn-outline-dark">New Review</button>'
+            // inserts the add game card
+            document.getElementById("newBtn").innerHTML = '<button type="button" id="addCard" class="btn btn-outline-dark">New Review</button>'
 
             var cardButton = document.getElementById("addCard");
             cardButton.onclick = function() {
@@ -117,6 +120,18 @@ $arrLength = count($games);
                 cancelButton.onclick = function() {
                     document.getElementById("newCard").innerHTML = "";
                 }
+            }
+        </script>
+    <?php
+    endif;
+
+    if (!isset($_GET["0"])) :
+    ?>
+        <script>
+            //displays a message if 'new review button is pressed on the wrong page
+            var cardButton = document.getElementById("addCard");
+            cardButton.onclick = function() {
+                alert("Must be on the 'Add New Reviews' page to create reviews.");
             }
         </script>
     <?php
