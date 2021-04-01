@@ -4,9 +4,10 @@ class GameDAO
   function getGames()
   {
     $path1 = $_SERVER['DOCUMENT_ROOT'];
-    require_once($path1 . '/Request/utilities/connection.php');
+    require($path1 . '/Request/utilities/connection.php');
 
-    $sql = "SELECT gameId,gameName, gameDescription, gameRating, gamePicture, gameUpVotes FROM games ORDER BY gameRating DESC ";
+    $sql = "SELECT gameId, gameName, gameDescription, gameRating, gamePicture, gameUpVotes FROM games ORDER BY gameRating DESC";
+    //echo $sql;
     $result = $conn->query($sql);
     $games;
     if ($result->num_rows > 0) {
@@ -30,12 +31,12 @@ class GameDAO
     return $games;
   }
 
-  function getGamesSorted($choice,$upDown)
+  function getGamesSorted($choice, $upDown)
   {
     $path1 = $_SERVER['DOCUMENT_ROOT'];
     require_once($path1 . '/Request/utilities/connection.php');
 
-    $sql = "SELECT gameId,gameName, gameDescription, gameRating, gamePicture, gameUpVotes FROM games ORDER BY ".$choice." ".$upDown;
+    $sql = "SELECT gameId,gameName, gameDescription, gameRating, gamePicture, gameUpVotes FROM games ORDER BY " . $choice . " " . $upDown;
     $result = $conn->query($sql);
     $games;
     if ($result->num_rows > 0) {
@@ -87,12 +88,12 @@ class GameDAO
     return $games;
   }
 
-  function getMyGamesSorted($user_id,$choice,$upDown)
+  function getMyGamesSorted($user_id, $choice, $upDown)
   {
     $path1 = $_SERVER['DOCUMENT_ROOT'];
     require_once($path1 . '/Request/utilities/connection.php');
 
-    $sql = "SELECT gameId, gameName, gameDescription, gameRating, gamePicture, gameUpVotes FROM games where gameUser=" . $user_id . " ORDER BY ".$choice." ".$upDown;
+    $sql = "SELECT gameId, gameName, gameDescription, gameRating, gamePicture, gameUpVotes FROM games where gameUser=" . $user_id . " ORDER BY " . $choice . " " . $upDown;
     $result = $conn->query($sql);
     $games = array();
     if ($result->num_rows > 0) {
@@ -139,8 +140,8 @@ class GameDAO
     $gu = $game->getUserLog();
     $gp = $game->getGamePicture();
     $guv = $game->getGameUpVotes();
-    
-    $stmt->bind_param("ssssss", $gn, $gd, $gr, $gu, $gp,$guv);
+
+    $stmt->bind_param("ssssss", $gn, $gd, $gr, $gu, $gp, $guv);
     if (!$stmt->execute()) {
       $stmt->close();
       $conn->close();
@@ -177,7 +178,7 @@ class GameDAO
     $guv = $game->getGameUpVotes();
     $gi = $game->getGameID();
 
-    $stmt->bind_param("sssssss", $gn, $gd, $gr, $gu, $gp,$guv,$gi);
+    $stmt->bind_param("sssssss", $gn, $gd, $gr, $gu, $gp, $guv, $gi);
     if (!$stmt->execute()) {
       $stmt->close();
       $conn->close();
