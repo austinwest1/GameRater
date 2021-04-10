@@ -55,18 +55,18 @@ $game = new Game();
                                   <label id="sortLabel">Sort Method</label>';
                         } else if ($_GET["sort"] == 1) {
                             echo '<a href="index.php?0&sort=0" class="list-group-item" id="sortBtn">Rating</a>
-                            <a href="index.php?0&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
-                            <label id="sortLabel">Sort Method</label>';
+                                  <a href="index.php?0&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
+                                  <label id="sortLabel">Sort Method</label>';
                         }
                     } else if (isset($_GET["1"])) {
                         if ($_GET["sort"] == 0) {
-                            echo '<a href="index.php?0&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
-                                  <a href="index.php?0&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
+                            echo '<a href="index.php?1&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
+                                  <a href="index.php?1&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
                                   <label id="sortLabel">Sort Method</label>';
                         } else if ($_GET["sort"] == 1) {
-                            echo '<a href="index.php?0&sort=0" class="list-group-item" id="sortBtn">Rating</a>
-                            <a href="index.php?0&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
-                            <label id="sortLabel">Sort Method</label>';
+                            echo '<a href="index.php?1&sort=0" class="list-group-item" id="sortBtn">Rating</a>
+                                  <a href="index.php?1&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
+                                  <label id="sortLabel">Sort Method</label>';
                         }
                     }
                     ?>
