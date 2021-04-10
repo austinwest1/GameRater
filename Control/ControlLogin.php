@@ -14,6 +14,6 @@ if (!$login_result) {
     header("Location: ../login.php?result=0");
     exit();
 } else {
-    header("Location: ../homepage/index.php?0");
+    header("Location: ../homepage/index.php?0&sort=0");
     exit();
 }
