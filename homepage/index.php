@@ -5,11 +5,10 @@ error_reporting(E_ALL);
 include_once('../Control/ControlSessionCheck.php');
 include_once('../View/Common/header.php');
 include_once('../Model/ModelGame.php');
+include_once('displayGames.php');
 
 $game = new Game();
-$games = $game->getMyGames($_SESSION["user_id"]);
 
-$arrLength = count($games);
 
 ?>
 
@@ -25,17 +24,17 @@ $arrLength = count($games);
                     <?php
                     // changes navbox active color depending on which page is currently selected
                     if (isset($_GET["0"])) {
-                        echo '<a href="index.php?0" class="list-group-item active">Add New Reviews</a>
-                              <a href="index.php?1" class="list-group-item">View All Reviews</a>
-                              <a href="index.php?2" class="list-group-item">Vote On Games</a>';
+                        echo '<a href="index.php?0&sort=0" class="list-group-item active">Add New Reviews</a>
+                              <a href="index.php?1&sort=0" class="list-group-item">View All Reviews</a>
+                              <a href="index.php?2&sort=0" class="list-group-item">Vote On Games</a>';
                     } else if (isset($_GET["1"])) {
-                        echo '<a href="index.php?0" class="list-group-item">Add New Reviews</a>
-                              <a href="index.php?1" class="list-group-item active">View All Reviews</a>
-                              <a href="index.php?2" class="list-group-item">Vote On Games</a>';
+                        echo '<a href="index.php?0&sort=0" class="list-group-item">Add New Reviews</a>
+                              <a href="index.php?1&sort=0" class="list-group-item active">View All Reviews</a>
+                              <a href="index.php?2&sort=0" class="list-group-item">Vote On Games</a>';
                     } else if (isset($_GET["2"])) {
-                        echo '<a href="index.php?0" class="list-group-item">Add New Reviews</a>
-                              <a href="index.php?1" class="list-group-item">View All Reviews</a>
-                              <a href="index.php?2" class="list-group-item active">Vote On Games</a>';
+                        echo '<a href="index.php?0&sort=0" class="list-group-item">Add New Reviews</a>
+                              <a href="index.php?1&sort=0" class="list-group-item">View All Reviews</a>
+                              <a href="index.php?2&sort=0" class="list-group-item active">Vote On Games</a>';
                     }
                     ?>
                     <div id="newBtn">
@@ -46,71 +45,132 @@ $arrLength = count($games);
             </div>
             <!-- /.col-lg-3 -->
 
-            <div class="col-lg-9">
+            <div class="col-lg-9" id="test">
 
                 <div id="sortMethod">
-                    <label id="sortLabel">Sort Method - still working on these, ignore the ugliness</label>
-                    <button class="btn btn-info" id="sortButton">Rating</button>
-                    <button class="btn btn-info" id="sortButton">Upvotes</button>
+
+                    <?php
+                    // displays sort buttons on each page, switches colors when on different methods
+                    if (isset($_GET["0"])) {
+                        if ($_GET["sort"] == 0) {
+                            echo '<a href="index.php?0&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
+                                  <a href="index.php?0&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
+                                  <label id="sortLabel">Sort Method</label>';
+                        } else if ($_GET["sort"] == 1) {
+                            echo '<a href="index.php?0&sort=0" class="list-group-item" id="sortBtn">Rating</a>
+                            <a href="index.php?0&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
+                            <label id="sortLabel">Sort Method</label>';
+                        }
+                    } else if (isset($_GET["1"])) {
+                        if ($_GET["sort"] == 0) {
+                            echo '<a href="index.php?0&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
+                                  <a href="index.php?0&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
+                                  <label id="sortLabel">Sort Method</label>';
+                        } else if ($_GET["sort"] == 1) {
+                            echo '<a href="index.php?0&sort=0" class="list-group-item" id="sortBtn">Rating</a>
+                            <a href="index.php?0&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
+                            <label id="sortLabel">Sort Method</label>';
+                        }
+                    }
+                    ?>
+
                 </div>
 
+                <!-- div for newly added games -->
                 <div id="newCard"></div>
 
-
-                <!-- comparison containers -->
-                <!-- <div class="float-container">
-
-                    <div class="float-child">
-                        <div class="green">Float Column 1</div>
-                    </div>
-
-                    <div class="float-child">
-                        <div class="blue">Float Column 2</div>
-                    </div>
-
-                </div> -->
 
                 <?php
                 // inserts games for indiviual user
                 if (isset($_GET["0"])) {
-                    for ($x = $arrLength - 1; $x >= 0; $x--) {
-                        echo '<div class="card mt-4">
-                                <img class="card-img-top img-fluid" src="' . $games[$x]->getGamePicture() . '" alt="">
-                                <div class="card-body">
-                                    <h5 id="upvotes">' . $games[$x]->getGameUpVotes() . '</h5>
-                                    <img id="upvoteImg" src="upvote3.png" alt="">
-                                    <h3 class="card-title">' . $games[$x]->getGameName() . '</h3>
-                                    <h5>My Rating: ' . $games[$x]->getGameRating() . '/10</h5>
-                                    <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
-                                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                                    Will make the stars work later, maybe
-                                    <a href="../Control/ControlGameDelete.php?gameId= ' . $games[$x]->getGameID() . '" id="deleteCard">Delete Game</a>
-                                </div>
-                            </div>';
+                    // displays games sorted by rating
+                    if ($_GET["sort"] == 0) {
+                        $games = $game->getMyGamesSorted($_SESSION["user_id"], 3, 1);
+                        $arrLength = count($games);
+
+
+                        for ($x = $arrLength - 1; $x >= 0; $x--) {
+                            echo '<div class="card mt-4">
+                                    <img class="card-img-top img-fluid" src="' . $games[$x]->getGamePicture() . '" alt="">
+                                    <div class="card-body">
+                                        <h5 id="upvotes">' . $games[$x]->getGameUpVotes() . '</h5>
+                                        <img id="upvoteImg" src="upvote3.png" alt="">
+                                        <h3 class="card-title">' . $games[$x]->getGameName() . '</h3>
+                                        <h5>My Rating: ' . $games[$x]->getGameRating() . '/10</h5>
+                                        <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
+                                        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                                        Will make the stars work later, maybe
+                                        <a href="../Control/ControlGameDelete.php?gameId= ' . $games[$x]->getGameID() . '" id="deleteCard">Delete Game</a>
+                                    </div>
+                                </div>';
+                        }
+                        // displays games sorted by upvotes
+                    } else if ($_GET["sort"] == 1) {
+                        $games = $game->getMyGamesSorted($_SESSION["user_id"], 5, 1);
+                        $arrLength = count($games);
+
+                        for ($x = $arrLength - 1; $x >= 0; $x--) {
+                            echo '<div class="card mt-4">
+                                    <img class="card-img-top img-fluid" src="' . $games[$x]->getGamePicture() . '" alt="">
+                                    <div class="card-body">
+                                        <h5 id="upvotes">' . $games[$x]->getGameUpVotes() . '</h5>
+                                        <img id="upvoteImg" src="upvote3.png" alt="">
+                                        <h3 class="card-title">' . $games[$x]->getGameName() . '</h3>
+                                        <h5>My Rating: ' . $games[$x]->getGameRating() . '/10</h5>
+                                        <p class="card-text">' . $games[$x]->getGameDescription() . '</p>
+                                        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                                        Will make the stars work later, maybe
+                                        <a href="../Control/ControlGameDelete.php?gameId= ' . $games[$x]->getGameID() . '" id="deleteCard">Delete Game</a>
+                                    </div>
+                                </div>';
+                        }
                     }
                 }
                 // inserts complete list of games
                 else if (isset($_GET["1"])) {
                     $game2 = new Game();
-                    $games2 = $game2->getAllGames();
 
-                    $arrLength = count($games2);
+                    // sort by game rating 
+                    if ($_GET["sort"] == 0) {
+                        $games2 = $game2->getAllGamesSorted(3, 1);
+                        $arrLength = count($games2);
 
-                    for ($x = $arrLength - 1; $x >= 0; $x--) {
-                        echo '<div class="card mt-4">
-                                <img class="card-img-top img-fluid" src="' . $games2[$x]->getGamePicture() . '" alt="">
-                                <div class="card-body">
-                                    <h5 id="upvotes">' . $games2[$x]->getGameUpVotes() . '</h5>
-                                    <img id="upvoteImg" src="upvote3.png" alt="">
-                                    <h3 class="card-title">' . $games2[$x]->getGameName() . '</h3>
-                                    <h5>User Rating: ' . $games2[$x]->getGameRating() . '/10</h5>
-                                    <p class="card-text">' . $games2[$x]->getGameDescription() . '</p>
-                                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                                    Will make the stars work later, maybe
-                                </div>
-                            </div>';
+                        for ($x = $arrLength - 1; $x >= 0; $x--) {
+                            echo '<div class="card mt-4">
+                                    <img class="card-img-top img-fluid" src="' . $games2[$x]->getGamePicture() . '" alt="">
+                                    <div class="card-body">
+                                        <h5 id="upvotes">' . $games2[$x]->getGameUpVotes() . '</h5>
+                                        <img id="upvoteImg" src="upvote3.png" alt="">
+                                        <h3 class="card-title">' . $games2[$x]->getGameName() . '</h3>
+                                        <h5>User Rating: ' . $games2[$x]->getGameRating() . '/10</h5>
+                                        <p class="card-text">' . $games2[$x]->getGameDescription() . '</p>
+                                        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                                        Will make the stars work later, maybe
+                                    </div>
+                                </div>';
+                        }
+                        // sort by game upvotes
+                    } else if ($_GET["sort"] == 1) {
+                        $games2 = $game2->getAllGamesSorted(5, 1);
+                        $arrLength = count($games2);
+
+                        for ($x = $arrLength - 1; $x >= 0; $x--) {
+                            echo '<div class="card mt-4">
+                                    <img class="card-img-top img-fluid" src="' . $games2[$x]->getGamePicture() . '" alt="">
+                                    <div class="card-body">
+                                        <h5 id="upvotes">' . $games2[$x]->getGameUpVotes() . '</h5>
+                                        <img id="upvoteImg" src="upvote3.png" alt="">
+                                        <h3 class="card-title">' . $games2[$x]->getGameName() . '</h3>
+                                        <h5>User Rating: ' . $games2[$x]->getGameRating() . '/10</h5>
+                                        <p class="card-text">' . $games2[$x]->getGameDescription() . '</p>
+                                        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                                        Will make the stars work later, maybe
+                                    </div>
+                                </div>';
+                        }
                     }
                 }
+                // inserts two game side by side for comparison
                 if (isset($_GET["2"])) :
                     $game2 = new Game();
                     $allGames = $game2->getAllGames();
@@ -129,7 +189,6 @@ $arrLength = count($games);
                                                 <h5 id="upvotes">' . $allGames[$r]->getGameUpVotes() . '</h5>
                                                 <img id="upvoteImg" src="upvote3.png" alt="">
                                                 <h3 class="card-title">' . $allGames[$r]->getGameName() . '</h3>
-                                                <p class="card-text">' . $allGames[$r]->getGameDescription() . '</p>
                                                 <button type="button" class="btn btn-outline-dark" id="voteBtn">Vote</button>
                                             </div>
                                     </div>
@@ -143,7 +202,6 @@ $arrLength = count($games);
                                                 <h5 id="upvotes">' . $allGames[$r2]->getGameUpVotes() . '</h5>
                                                 <img id="upvoteImg" src="upvote3.png" alt="">
                                                 <h3 class="card-title">' . $allGames[$r2]->getGameName() . '</h3>
-                                                <p class="card-text">' . $allGames[$r2]->getGameDescription() . '</p>
                                                 <button type="button" class="btn btn-outline-dark" id="voteBtn">Vote</button>
 
                                             </div>
@@ -191,7 +249,7 @@ $arrLength = count($games);
     if (!isset($_GET["0"])) :
     ?>
         <script>
-            //displays a message if 'new review button is pressed on the wrong page
+            // displays a message if new review button is pressed on the wrong page
             var cardButton = document.getElementById("addCard");
             cardButton.onclick = function() {
                 alert("Must be on the 'Add New Reviews' page to create reviews.");
@@ -240,18 +298,6 @@ $arrLength = count($games);
         outline-color: red; */
     }
 
-    #sortButton {
-        width: 120px;
-    }
-
-    div#sortMethod {
-        /* position: absolute; */
-    }
-
-    button#sortButton,
-    label#sortLabel {
-        /* float: right; */
-    }
 
     #upvotes {
         float: right;
@@ -280,11 +326,24 @@ $arrLength = count($games);
     }
 
     #sortLabel {
+        float: right;
         margin-top: 30px;
-        margin-left: 280px;
+        margin-right: 15px;
+        font-size: larger;
     }
 
     #voteBtn {
         margin-left: 30px;
+    }
+
+    div#sortMethod {
+        overflow: auto;
+    }
+
+    div#sortMethod>#sortBtn {
+        float: right;
+        width: 120px;
+        margin-left: 10px;
+        margin-top: 25px;
     }
 </style>
