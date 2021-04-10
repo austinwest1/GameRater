@@ -8,8 +8,6 @@ include_once('../Model/ModelGame.php');
 include_once('displayGames.php');
 
 $game = new Game();
-
-
 ?>
 
 <body>
