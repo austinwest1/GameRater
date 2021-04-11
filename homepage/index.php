@@ -261,7 +261,6 @@ $game = new Game();
 
     ?>
     <!-- /.container -->
-
     <div class="push"></div>
 
     <!-- Footer -->
