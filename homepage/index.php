@@ -52,21 +52,21 @@ $game = new Game();
                         if ($_GET["sort"] == 0) {
                             echo '<a href="index.php?0&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
                                   <a href="index.php?0&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
-                                  <label id="sortLabel">Sort Method</label>';
+                                  <label id="sortLabel">Sort by</label>';
                         } else if ($_GET["sort"] == 1) {
                             echo '<a href="index.php?0&sort=0" class="list-group-item" id="sortBtn">Rating</a>
                                   <a href="index.php?0&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
-                                  <label id="sortLabel">Sort Method</label>';
+                                  <label id="sortLabel">Sort by</label>';
                         }
                     } else if (isset($_GET["1"])) {
                         if ($_GET["sort"] == 0) {
                             echo '<a href="index.php?1&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
                                   <a href="index.php?1&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
-                                  <label id="sortLabel">Sort Method</label>';
+                                  <label id="sortLabel">Sort by</label>';
                         } else if ($_GET["sort"] == 1) {
                             echo '<a href="index.php?1&sort=0" class="list-group-item" id="sortBtn">Rating</a>
                                   <a href="index.php?1&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
-                                  <label id="sortLabel">Sort Method</label>';
+                                  <label id="sortLabel">Sort by</label>';
                         }
                     }
                     ?>
@@ -186,7 +186,7 @@ $game = new Game();
                                                 <h5 id="upvotes">' . $allGames[$r]->getGameUpVotes() . '</h5>
                                                 <img id="upvoteImg" src="upvote3.png" alt="">
                                                 <h3 class="card-title">' . $allGames[$r]->getGameName() . '</h3>
-                                                <button type="button" class="btn btn-outline-dark" id="voteBtn">Vote</button>
+                                                <a href="addUpvote.php?id=' . $allGames[$r]->getGameID() . '&n=' . $r . '" class="btn btn-outline-dark" id="voteBtn">Vote</a>
                                             </div>
                                     </div>
                                 </div>
@@ -199,8 +199,7 @@ $game = new Game();
                                                 <h5 id="upvotes">' . $allGames[$r2]->getGameUpVotes() . '</h5>
                                                 <img id="upvoteImg" src="upvote3.png" alt="">
                                                 <h3 class="card-title">' . $allGames[$r2]->getGameName() . '</h3>
-                                                <button type="button" class="btn btn-outline-dark" id="voteBtn">Vote</button>
-
+                                                <a href="addUpvote.php?id=' . $allGames[$r2]->getGameID() . '&n=' . $r2 . '" class="btn btn-outline-dark" id="voteBtn">Vote</a>
                                             </div>
                                     </div>
                                 </div>
@@ -210,6 +209,11 @@ $game = new Game();
                 ?>
                     <script>
                         document.getElementById("sortMethod").innerHTML = '<h3 id="sortLabel">Which game is better?</h3>';
+
+                        var voteButton = document.getElementsByClassName("btn btn-outline-dark");
+                        voteButton.onclick = function() {
+                            location.reload();
+                        }
                     </script>
 
                 <?php
@@ -254,6 +258,7 @@ $game = new Game();
         </script>
     <?php
     endif;
+
     ?>
     <!-- /.container -->
 
@@ -324,7 +329,7 @@ $game = new Game();
 
     #sortLabel {
         float: right;
-        margin-top: 30px;
+        margin-top: 35px;
         margin-right: 15px;
         font-size: larger;
     }
