@@ -177,7 +177,7 @@ class GameDAO
     $guv = $game->getGameUpVotes();
     $gi = $game->getGameID();
 
-    $stmt->bind_param("ssisiii", $gn, $gd, $gr, $gp, $guv, $gi);
+    $stmt->bind_param("ssisii", $gn, $gd, $gr, $gp, $guv, $gi);
     if (!$stmt->execute()) {
       $stmt->close();
       $conn->close();
