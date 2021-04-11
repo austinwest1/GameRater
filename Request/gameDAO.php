@@ -164,7 +164,6 @@ class GameDAO
     gameName=?,
     gameDescription=?,
     gameRating=?,
-    gameUser=?,
     gamePicture=?,
     gameUpVotes=?
     WHERE
@@ -178,7 +177,7 @@ class GameDAO
     $guv = $game->getGameUpVotes();
     $gi = $game->getGameID();
 
-    $stmt->bind_param("ssiisii", $gn, $gd, $gr, $gu, $gp, $guv, $gi);
+    $stmt->bind_param("ssisiii", $gn, $gd, $gr, $gp, $guv, $gi);
     if (!$stmt->execute()) {
       $stmt->close();
       $conn->close();
