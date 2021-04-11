@@ -90,6 +90,7 @@ class Game implements \JsonSerializable
     return $games;
   }
 
+
   function createGame()
   {
     $gameDAO = new GameDAO();
@@ -108,7 +109,7 @@ class Game implements \JsonSerializable
     $result = $gameDAO->deleteGame($gameID, $username2);
     return $result;
   }
-  
+
   /************************************************************************Sorted Functionality Begin */
   /*
   * The sorted functions both take in a choice for the column to be sorted on, and a upDown direction for 
@@ -116,11 +117,11 @@ class Game implements \JsonSerializable
   * For Choice:  (1,gameName)  (2,gameDescription) (3,gameRating) (4,gameUser) (5,GameUpVotes)
   * For upDown:  (0, Descending) (1,Ascending)
   */
-  function getAllGamesSorted($choice,$upDown)
+  function getAllGamesSorted($choice, $upDown)
   {
     $chosen = "gameId";
     $direction = "DESC";
-    switch($choice){
+    switch ($choice) {
       case 1:
         $chosen = "gameName";
         break;
@@ -137,19 +138,19 @@ class Game implements \JsonSerializable
         $chosen = "gameUpVotes";
         break;
     }
-    if($upDown){
+    if ($upDown) {
       $direction = " ";
     }
     $gameDAO = new GameDAO();
-    $games = $gameDAO->getGamesSorted($chosen,$direction);
+    $games = $gameDAO->getGamesSorted($chosen, $direction);
     return $games;
   }
 
-  function getMyGamesSorted($user_logged,$choice,$upDown)
+  function getMyGamesSorted($user_logged, $choice, $upDown)
   {
     $chosen = "gameId";
     $direction = "DESC";
-    switch($choice){
+    switch ($choice) {
       case 1:
         $chosen = "gameName";
         break;
@@ -166,11 +167,11 @@ class Game implements \JsonSerializable
         $chosen = "gameUpVotes";
         break;
     }
-    if($upDown){
+    if ($upDown) {
       $direction = " ";
     }
     $gameDAO = new GameDAO();
-    $games = $gameDAO->getMyGamesSorted($user_logged,$chosen,$direction);
+    $games = $gameDAO->getMyGamesSorted($user_logged, $chosen, $direction);
     return $games;
   }
   //***********************************************************************************Sorted Functionality End */

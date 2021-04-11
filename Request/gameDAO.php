@@ -1,6 +1,7 @@
 <?php
 class GameDAO
 {
+
   function getGames()
   {
     $path1 = $_SERVER['DOCUMENT_ROOT'];
@@ -120,7 +121,7 @@ class GameDAO
   function createGame($game)
   {
     $path1 = $_SERVER['DOCUMENT_ROOT'];
-    require_once($path1 . '/Request/utilities/connection.php');
+    require($path1 . '/Request/utilities/connection.php');
     //prepare and bind
     $stmt = $conn->prepare(
       "INSERT INTO gamerater.games
@@ -156,19 +157,18 @@ class GameDAO
   function updateGame($game)
   {
     $path1 = $_SERVER['DOCUMENT_ROOT'];
-    require_once($path1 . '/Request/utilities/connection.php');
+    require($path1 . '/Request/utilities/connection.php');
     //prepare and bind
     $stmt = $conn->prepare(
-      "UPDATE gamerater.games
-    SET
-    gameName = ?,
-    gameDescription =?,
-    gameRating =?,
-    gameUser= ?,
-    gamePicture =?,
-    gameUpVotes =?
+      "UPDATE gamerater.games SET
+    gameName=?,
+    gameDescription=?,
+    gameRating=?,
+    gameUser=?,
+    gamePicture=?,
+    gameUpVotes=?
     WHERE
-    gameId = ?"
+    gameId=?"
     );
     $gn = $game->getGameName();
     $gd = $game->getGameDescription();
@@ -178,7 +178,7 @@ class GameDAO
     $guv = $game->getGameUpVotes();
     $gi = $game->getGameID();
 
-    $stmt->bind_param("sssssss", $gn, $gd, $gr, $gu, $gp, $guv, $gi);
+    $stmt->bind_param("ssiisii", $gn, $gd, $gr, $gu, $gp, $guv, $gi);
     if (!$stmt->execute()) {
       $stmt->close();
       $conn->close();
