@@ -334,7 +334,8 @@ $game = new Game();
     }
 
     #voteBtn {
-        margin-left: 30px;
+        margin-left: 78px;
+        width: 150px;
     }
 
     div#sortMethod {
