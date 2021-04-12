@@ -8,7 +8,7 @@ Notes:
 Common Pathing switched to allowe the root to be htdocs rather than gameRater for
 the local development=> may need to reposition files to make work again on local instance
 
-Site index is under homepage/index.php
+Site index is under homepage/index.php?0&sort=0
 
 tables in cs3620=>
       games=>
@@ -17,6 +17,8 @@ tables in cs3620=>
          gameDescription   varchar(256)
          gameRating        int(11)
          gameUser          int(11)
+         gamePicture       varchar(300)
+         GameUpvotes       int(11)
       user=>
          user_id           int(11)
          first_name        varchar(20)
