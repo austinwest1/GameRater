@@ -71,7 +71,6 @@ error_reporting(E_ALL);
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                <a class="underlineHover" href="#">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="underLineHover" href="login.php">Already Have an Account?</a>
             </div>
 
