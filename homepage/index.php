@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 include_once('../Control/ControlSessionCheck.php');
 include_once('../View/Common/header.php');
 include_once('../Model/ModelGame.php');
+include_once('../Model/ModelUser.php');
 
 $game = new Game();
 ?>
@@ -47,27 +48,35 @@ $game = new Game();
                 <div id="sortMethod">
 
                     <?php
+                    // $user = new User();
+                    // $currentUser = $user->getUser($_SESSION["user_id"]);
                     // displays sort buttons on each page, switches colors when on different methods
                     if (isset($_GET["0"])) {
                         if ($_GET["sort"] == 0) {
                             echo '<a href="index.php?0&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
                                   <a href="index.php?0&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
-                                  <label id="sortLabel">Sort by</label>';
+                                  <h4 id="sortLabel">Sort By</h3>
+                                  <h3 id="currentUser">Your Games</h3>';
                         } else if ($_GET["sort"] == 1) {
                             echo '<a href="index.php?0&sort=0" class="list-group-item" id="sortBtn">Rating</a>
                                   <a href="index.php?0&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
+                                  <h3 id="sortLabel">Sort By</h3>
                                   <label id="sortLabel">Sort by</label>';
                         }
                     } else if (isset($_GET["1"])) {
                         if ($_GET["sort"] == 0) {
                             echo '<a href="index.php?1&sort=0" class="list-group-item active" id="sortBtn">Rating</a>
                                   <a href="index.php?1&sort=1" class="list-group-item" id="sortBtn">Upvotes</a>
-                                  <label id="sortLabel">Sort by</label>';
+                                  <h4 id="sortLabel">Sort By</h3>
+                                  <h3 id="currentUser">All Games</h3>';
                         } else if ($_GET["sort"] == 1) {
                             echo '<a href="index.php?1&sort=0" class="list-group-item" id="sortBtn">Rating</a>
                                   <a href="index.php?1&sort=1" class="list-group-item active" id="sortBtn">Upvotes</a>
-                                  <label id="sortLabel">Sort by</label>';
+                                  <h4 id="sortLabel">Sort By</h3>
+                                  <h3 id="currentUser">Your Games</h3>';
                         }
+                    } else if (isset($_GET["2"])) {
+                        echo '<h2 id="voteLbl">Which game is better?</h2>';
                     }
                     ?>
 
@@ -208,7 +217,7 @@ $game = new Game();
 
                 ?>
                     <script>
-                        document.getElementById("sortMethod").innerHTML = '<h3 id="sortLabel">Which game is better?</h3>';
+                        //document.getElementById("sortMethod").innerHTML = '<h3 id="sortLabel">Which game is better?</h3>';
 
                         var voteButton = document.getElementsByClassName("btn btn-outline-dark");
                         voteButton.onclick = function() {
@@ -330,12 +339,19 @@ $game = new Game();
         float: right;
         margin-top: 35px;
         margin-right: 15px;
-        font-size: larger;
+        color: #292b2c;
+        /* font-size: larger; */
     }
 
     #voteBtn {
         margin-left: 78px;
         width: 150px;
+    }
+
+    #voteLbl {
+        margin-left: 250px;
+        margin-top: 45px;
+
     }
 
     div#sortMethod {
@@ -347,5 +363,19 @@ $game = new Game();
         width: 120px;
         margin-left: 10px;
         margin-top: 25px;
+    }
+
+    #currentUser {
+        float: left;
+        margin-top: 35px;
+        color: #0275d8;
+    }
+
+    div.float-child {
+        min-height: 400px;
+    }
+
+    div.card-body {
+        min-height: 150px;
     }
 </style>
