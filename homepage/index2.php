@@ -148,11 +148,19 @@ $game = new Game();
                                         if ($_GET["sort"] == 0) {
                                             $games = $game->getMyGamesSorted($_SESSION["user_id"], 3, 1);
                                             $arrLength = count($games);
+
+                                            if ($arrLength == 0) {
+                                                echo "<h2 class='noGames'>Click 'Add Review' to start adding games!</h2>";
+                                            }
                                         }
                                         // sorts games by upvotes
                                         else if ($_GET["sort"] == 1) {
                                             $games = $game->getMyGamesSorted($_SESSION["user_id"], 5, 1);
                                             $arrLength = count($games);
+
+                                            if ($arrLength == 0) {
+                                                echo "<h2 class='noGames'>Click 'Add Review' to start adding games!</h2>";
+                                            }
                                         }
                                         // displays games by sorted order
                                         for ($x = $arrLength - 1; $x >= 0; $x--) {
