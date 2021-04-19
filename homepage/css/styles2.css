@@ -1,0 +1,727 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #426696;
+    font-weight: 600;
+    font-size: 3rem;
+    opacity: 0.8;
+}
+h2, p {
+    columns: #658ec6;
+    font-weight: 500;
+    opacity: 0.8;
+}
+h3, .nav {
+    color: #426696;
+    font-weight: 600;
+    opacity: 0.8;
+
+}
+
+.nav {
+    text-decoration: none;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+
+}
+
+.nav:hover {
+    color: black;
+}
+
+main {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to right top, #52ecec, #4f82f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glass {
+    background: white;
+    max-height: 88vh;
+    width: 70%;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+    border-radius: 2rem;
+    z-index: 3;
+    backdrop-filter: blur(2rem);
+    display: flex;
+    margin-top: 4rem;
+}
+.circle1, .circle2, .cirlce3 {
+    background: white;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.circle1 {
+    top: 5%;
+    right: 15%;
+}
+
+.circle2 {
+    bottom: 5%;
+    left: 10%;
+}
+
+.circle3 {
+    bottom: 50%;
+    left: 50%;
+}
+
+.dashboard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+    border-radius: 2rem;
+}
+
+#menu {
+    margin-top: 10px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+}
+
+.link h2 {
+    padding: 0rem 2rem;
+}
+
+.link a, .link-active a {
+    width: 100%;
+    color: white;
+    align-items: center;
+    text-decoration: none;
+    font-size: larger;
+    font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.link-active a {
+    color:#426696;
+}
+
+.link a:hover {
+    background: linear-gradient(to right top, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.link a:visited {
+    text-decoration: none;
+}
+
+.links {
+    background: linear-gradient(to right top, #52ecec81, #4f82f1);
+    border-radius: 1rem;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.link:hover {
+    background: linear-gradient(to right top, #ffffff5d, #ffffff2f);
+    border-radius: 1rem;
+}
+
+.link-active {
+    background: linear-gradient(to right top, #ffffffd0, #ffffffaf);
+    border-radius: 0.7rem;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#newReview {
+    width: 150px;
+    height: 38px;
+    margin-top: 15px;
+    border-radius: 6px;
+    border: 1px solid #426696;
+    font-family: "Poppins", sans-serif;
+    background-color: white;
+    color: #426696;
+}
+
+#newReview:hover, .voteButton:hover {
+    background-color:#426696;
+    color: white;
+    cursor: pointer;
+}
+
+#newReview:focus, .vote-container:focus {
+    outline-color: #4fb0f1;
+}
+
+.games {
+    flex: 2;
+}
+
+.pro {
+    background: linear-gradient(to right top, #65efc9, #6cdbeb);
+    border-radius: 2rem;
+    color: white;
+    padding: 1rem;
+    position: relative;
+}
+
+.pro img {
+    position: absolute;
+    top: -10%;
+    right: 10%;
+}
+
+.pro h2 {
+    width: 40%;
+    color: white;
+    font-weight: 600;
+}
+
+.user > img {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+}
+
+.selected h1 {
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+/* Games section */
+.status {
+    height: 80vh;
+    overflow: auto;
+}
+
+.status::-webkit-scrollbar {
+    display: none;
+}
+
+.status input {
+    background: linear-gradient(to right bottom,
+    rgba(255,255,255,0.7), 
+    rgba(255,255,255,0.3)
+    );
+    border: none;
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 2rem;
+}
+
+.games {
+    margin: 3.5rem;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.currentGames {
+    overflow: hidden;
+    width: 80%;
+}
+
+#selectedGames {
+    display: inline-block;
+}
+
+.sortButtons-active {
+    padding: 10px;
+    width: 80px;
+    background: linear-gradient(to right bottom, rgba(73, 219, 238, 0.7), rgba(71, 142, 248, 0.3));
+    text-decoration: none;
+    border-radius: 4px;
+    color: #426696;
+}
+
+.sortButtons {
+    padding: 10px;
+    width: 80px;
+    background: linear-gradient(to right bottom, rgba(252, 255, 255, 0.7), rgba(238, 245, 255, 0.3));
+    text-decoration: none;
+    border-radius: 4px;
+    color: #426696;
+}
+
+.sortButtons:hover {
+    color: white;
+    background: linear-gradient(to right bottom, rgba(73, 219, 238, 0.7), rgba(71, 142, 248, 0.3));
+
+}
+
+#sortBy {
+    display: inline-block;
+    margin-right: 15px;
+    color: #426696;
+}
+
+.sortControls {
+    float: right;
+    margin-top: 27px;
+    margin-right: 60px;
+}
+
+.card {
+    display: flex;
+    background: linear-gradient(to left top, 
+    rgba(255,255,255,0.8), 
+    rgba(255,255,255,0.3));
+    border-radius: 1rem;
+    margin: 2rem 0rem;
+    padding: 2rem;
+    box-shadow: 6px 6px 20px rgba(122,122,122,0.2);
+    height: auto;
+    width: 95%;
+    transition: 0.2s ease-out;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.card-body {
+    position: relative;
+    float: right;
+}
+
+.card-body a{
+    text-decoration: none;
+    color: black;
+}
+
+.card-body a:hover {
+    color: #426696;
+}
+
+.card-body a:visited {
+    text-decoration: none;
+}
+
+.card-img {
+    height: 150px;
+    border-radius: 1rem;
+    margin-top: 0px;
+}
+
+.cardImgAdd {
+    height: 150px;
+    border-radius: 1rem;
+}
+
+.picture {
+    float: left;
+}
+
+.gameInfo {
+    display: flex;
+    flex-direction:column;
+    float: left;
+}
+
+.desc {
+    margin-left: 32px;
+    margin-top: 8px;
+}
+
+h3.card-title {
+    font-size: x-large;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.percentage {
+    font-weight: bold; 
+    background: linear-gradient(to right top, #65efc9, #6cdbeb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/*Vote Page Styles*/
+.vote-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.game1 {
+    width: 370px;
+    height: 360px;
+    background: linear-gradient(to left top, 
+    rgba(255,255,255,0.8), 
+    rgba(255,255,255,0.3));
+    border-radius: 2rem;
+    margin: 20px;
+    display: block;
+}
+
+.votePicture img {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.voteInfo {
+    margin-left: 33px;
+    height: 100px;
+}
+
+.voteButton {
+    width: 120px;
+    height: 35px;
+    border: 1px solid #426696;
+    display: block;
+    border-radius: 6px;
+    margin: auto;
+    margin-top: 10px;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    color: #426696;
+    font-family: "Poppins", sans-serif;
+    padding-top: 4px;
+}
+
+.upvotes, #upvoteImg {
+    display: flex;
+}
+
+#voteLabel {
+    text-align: center;
+    margin-top: 30px; 
+
+    color: #426696;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    /* float: right; */
+}
+
+/*new review form styles*/
+.form-control {
+    margin-bottom: 5px;
+}
+
+.form-inputs, .form-desc {
+    display: inline-block;
+}
+
+
+.form-inputs input{
+    width: 200px;
+    margin-left: 15px;
+    margin-top: 3px;
+    font-family: "Poppins";
+}
+
+.form-inputs input:focus {
+    outline-color: #4fb0f1;
+}
+
+.form-desc textarea {
+    padding-left: 10px;
+    margin-left: 5px;
+    width: 181px;
+    height: 100px;
+    /* background-color: transparent; */
+    font-family: "Poppins";
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(to right bottom,
+    rgba(255,255,255,0.7), 
+    rgba(255,255,255,0.3)
+    );
+}
+
+.form-desc textarea:focus {
+    outline-color: #4fb0f1;
+}
+
+.form-buttons {
+    margin-left: 15px;
+}
+
+.form-buttons button{
+    height: 30px;
+    width: 80px;
+    background: linear-gradient(to right bottom, rgba(73, 219, 238, 0.7), rgba(71, 142, 248, 0.3));
+    border: none;
+    border-radius: 4px;
+    margin-left: 75px;
+    margin-top: 10px;
+    font-family: "poppins";
+    color: #426696;
+
+}
+
+.form-buttons button:hover {
+    background-color: white;
+    color: white;
+    cursor: pointer;
+}
+
+
+header {
+    font-family: "Poppins", sans-serif;
+    backdrop-filter: blur(2rem);
+    position: fixed;
+    width: 100vw;
+    z-index: 4;
+    text-align: center;
+    line-height: 60px;
+}
+
+.head {
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+
+    display: flex;
+    justify-content: space-between;
+    height: 4rem;
+}
+
+.title {
+    float: left;
+    margin-left: 2rem;
+}
+
+.nav a {
+    text-decoration: none;
+    font-size: larger;
+    margin: 1rem 2rem;
+    color: #426696;
+    font-weight: 600;
+}
+
+.nav {
+    align-items: center;
+    text-decoration: none;
+    padding: 2px 6px 2px 6px;
+
+}
+
+.nav a:hover, .title a:hover {
+    background: linear-gradient(to right top, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav a:visited {
+    text-decoration: none;
+}
+
+.title label {
+    font-weight: 600;
+    font-size: x-large;
+    color: #426696;
+    font-weight: 600;
+}
+
+.title a {
+    text-decoration: none;
+    font-size: larger;
+    margin: 1rem 2rem;
+    color: #426696;
+    font-weight: 600;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+/*Footer Styles*/
+footer {
+    font-family: "Poppins", sans-serif;
+    backdrop-filter: blur(2rem);
+    position: relative;
+    width: 100vw;
+    z-index: 4;
+    text-align: center;
+    color: #426696;
+    height: 40px;
+}
+
+.foot {
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+}
+
+.collapsible {
+
+    background-color: white;
+    color: #426696;
+    cursor: pointer;
+    /* padding: 18px; */
+    width: 125px;
+    height: 30px;
+    border: 1px solid #426696;
+    /* text-align: left; */
+    outline: none;
+    font-size: 15px;
+
+    border-radius: 5px;
+
+    display: block;
+    margin: auto;
+    margin-top: 12px;
+}
+
+.collapsible:hover {
+    color: white;
+    background: linear-gradient(to right bottom, rgba(73, 219, 238, 0.7), rgba(71, 142, 248, 0.3));
+    border: none;
+    /* background-color: #426696; */
+}
+
+
+.confirmDelete {
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    text-decoration: none;
+    border: 1px solid #dd1c1c;
+    background-color: white;
+    color: #dd1c1c;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.confirmDelete:hover {
+    color: white;
+    background-color: #dd1c1c;
+}
+
+.confirmDelete:visited {
+    text-decoration: none;
+}
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 0.75s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    opacity: 0;
+    -webkit-animation: fadeIn ease-in 1;
+    -moz-animation: fadeIn ease-in 1;
+    animation: fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.fadeIn.first {
+    -webkit-animation-delay: 0.4s;
+    -moz-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+
+.fadeIn.second {
+    -webkit-animation-delay: 0.6s;
+    -moz-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+.fadeIn.third {
+    -webkit-animation-delay: 0.8s;
+    -moz-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+}
+
+.fadeIn.fourth {
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    animation-delay: 1s;
+}

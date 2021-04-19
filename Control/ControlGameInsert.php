@@ -16,4 +16,4 @@ $game->setGameUpVotes($num);
 $game->createGame();
 
 
-header("Location: ../homepage/index.php?0&sort=0");
+header("Location: ../homepage/index2.php?0&sort=0");

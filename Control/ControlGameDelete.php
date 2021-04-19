@@ -9,4 +9,4 @@ require_once($path . '/Model/ModelGame.php');
 $game = new game();
 $result = $game->deleteGame($_GET["gameId"], $_SESSION["user_id"]);
 
-header("Location: ../homepage/index.php?0&sort=0");
+header("Location: ../homepage/index2.php?0&sort=0");

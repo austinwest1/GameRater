@@ -20,4 +20,4 @@ $allGames[$_GET["n"]]->setGameUpVotes($upvotes);
 
 $allGames[$_GET["n"]]->updateGame();
 
-header("Location: index.php?2");
+header("Location: index2.php?2");
