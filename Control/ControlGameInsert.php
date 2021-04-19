@@ -11,9 +11,16 @@ $game->setGameName($_POST["title"]);
 $game->setGameRating($_POST["rating"]);
 $game->setGameDescription($_POST["description"]);
 $game->setUserLog($_SESSION["user_id"]);
-$game->setGamePicture($_POST["picture"]);
+
+// inserts a palceholder image if none are entered by the user
+if ($_POST["picture"] == "") {
+    $game->setGamePicture("https://alphasys.com.au/wp-content/themes/corporate-theme/images/placeholder.png");
+}
+else {
+    $game->setGamePicture($_POST["picture"]);
+}
+
 $game->setGameUpVotes($num);
 $game->createGame();
-
 
 header("Location: ../homepage/index2.php?0&sort=0");
