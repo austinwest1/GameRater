@@ -27,7 +27,7 @@ $game = new Game();
     <div class="head">
         <div class="title">
             <label for="">Game Rater</label>
-            <a href="#">Home</a>
+            <a href="index2.php?0&sort=0">Home</a>
         </div>
         <div class="nav">
             <a href="../Control/ControlLogout.php">Logout</a>
