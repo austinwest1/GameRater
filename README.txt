@@ -1,3 +1,5 @@
+A simple web application that allows users to log in and add video games to review and vote on. 
+
 Team
 Austin W
 Austin D
